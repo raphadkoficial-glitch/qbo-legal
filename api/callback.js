@@ -1,13 +1,9 @@
-export default async function handler(req) {
-  const url = new URL(req.url, 'https://qbo-legal-blue.vercel.app');
-  const code = url.searchParams.get('code');
-  const realmId = url.searchParams.get('realmId');
+export default async function handler(req, res) {
+  const { code, realmId } = req.query;
 
   if (!code) {
-    return new Response(errorPage('Erro na autorizacao. Tente novamente.'), {
-      status: 400,
-      headers: { 'Content-Type': 'text/html; charset=utf-8' },
-    });
+    res.status(400).send(errorPage('Erro na autorizacao. Tente novamente.'));
+    return;
   }
 
   try {
@@ -26,17 +22,15 @@ export default async function handler(req) {
         grant_type: 'authorization_code',
         code,
         redirect_uri: 'https://qbo-legal-blue.vercel.app/api/callback',
-      }),
+      }).toString(),
     });
 
     const tokens = await tokenRes.json();
 
     if (tokens.error) {
-      console.error('Token exchange error:', tokens);
-      return new Response(errorPage('Erro ao conectar. Tente novamente.'), {
-        status: 400,
-        headers: { 'Content-Type': 'text/html; charset=utf-8' },
-      });
+      console.error('Token exchange error:', JSON.stringify(tokens));
+      res.status(400).send(errorPage('Erro ao conectar. Tente novamente.'));
+      return;
     }
 
     console.log('=== NEW CONNECTION ===');
@@ -46,16 +40,10 @@ export default async function handler(req) {
     console.log('expires_in:', tokens.expires_in);
     console.log('=== END CONNECTION ===');
 
-    return new Response(successPage(realmId), {
-      status: 200,
-      headers: { 'Content-Type': 'text/html; charset=utf-8' },
-    });
+    res.status(200).send(successPage(realmId));
   } catch (err) {
-    console.error('Callback error:', err);
-    return new Response(errorPage('Erro interno. Tente novamente.'), {
-      status: 500,
-      headers: { 'Content-Type': 'text/html; charset=utf-8' },
-    });
+    console.error('Callback error:', err.message);
+    res.status(500).send(errorPage('Erro interno. Tente novamente.'));
   }
 }
 
@@ -162,5 +150,3 @@ function errorPage(message) {
 </body>
 </html>`;
 }
-
-export const config = { runtime: 'edge' };
