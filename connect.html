@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conectar QuickBooks</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0077C5 0%, #004B8D 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .logo {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 24px;
+      background: #2CA01C;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo svg { width: 36px; height: 36px; fill: white; }
+    h1 {
+      font-size: 22px;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    p {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #2CA01C;
+      color: white;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #248a17; }
+    .btn svg { width: 22px; height: 22px; fill: white; }
+    .steps {
+      margin-top: 36px;
+      text-align: left;
+      padding: 24px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+    .steps h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #999;
+      margin-bottom: 16px;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: #444;
+      line-height: 1.5;
+    }
+    .step:last-child { margin-bottom: 0; }
+    .step-num {
+      min-width: 24px;
+      height: 24px;
+      background: #0077C5;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .secure {
+      margin-top: 24px;
+      font-size: 12px;
+      color: #999;
+    }
+    .secure svg {
+      width: 14px;
+      height: 14px;
+      fill: #999;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    </div>
+    <h1>Conecte seu QuickBooks</h1>
+    <p>Clique no botao abaixo para autorizar o acesso seguro aos seus relatorios financeiros (Balance Sheet e P&L).</p>
+
+    <a href="https://appcenter.intuit.com/connect/oauth2?client_id=ABWhdsiQ3k32Dq3tFb0jyU4yZuhiK1XkQkWWmnliY3WSRVZ3aq&redirect_uri=https%3A//developer.intuit.com/v2/OAuth2Playground/RedirectUrl&response_type=code&scope=com.intuit.quickbooks.accounting&state=connect" class="btn">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+      Conectar QuickBooks
+    </a>
+
+    <div class="steps">
+      <h3>Como funciona</h3>
+      <div class="step">
+        <div class="step-num">1</div>
+        <span>Clique no botao acima</span>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <span>Faca login com sua conta Intuit/QuickBooks</span>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <span>Selecione a empresa e autorize o acesso</span>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <span>Copie a URL da barra de endereco e envie de volta</span>
+      </div>
+    </div>
+
+    <p class="secure">
+      <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+      Conexao segura via OAuth 2.0 — seus dados nunca sao compartilhados com terceiros
+    </p>
+  </div>
+</body>
+</html>
